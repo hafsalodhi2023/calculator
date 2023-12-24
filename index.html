@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="buttons">
+        <input id="value" type="text" />
+        <span onclick="clearData('')" id="delete">DELETE</span>
+        <span onclick="storeData('/')">/</span>
+        <span onclick="storeData('*')">*</span>
+        <span onclick="storeData('7')">7</span>
+        <span onclick="storeData('8')">8</span>
+        <span onclick="storeData('9')">9</span>
+        <span onclick="storeData('-')">-</span>
+        <span onclick="storeData('4')">4</span>
+        <span onclick="storeData('5')">5</span>
+        <span onclick="storeData('6')">6</span>
+        <span onclick="storeData('+')" id="plus">+</span>
+        <span onclick="storeData('1')">1</span>
+        <span onclick="storeData('2')">2</span>
+        <span onclick="storeData('3')">3</span>
+        <span onclick="storeData('0')">0</span>
+        <span onclick="storeData('00')">00</span>
+        <span onclick="storeData('.')">.</span>
+        <span onclick="calcData()" id="equal">=</span>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function storeData(v) {
+        var resultBox = document.querySelector("#value");
+        var oldValue = resultBox.value;
+        var length = oldValue.length;
+        var lstChr = oldValue[length - 1];
+        resultBox.value = oldValue + v;
+        var oprSign = ["+", "-", "/", "*", "."];
+        if (oprSign.includes(v)) {
+          if (oprSign.includes(lstChr)) {
+            resultBox.value = oldValue + "";
+          } else {
+            resultBox.value = oldValue + v;
+          }
+        } else {
+          resultBox.value = oldValue + v;
+        }
+      }
+
+      function calcData() {
+        var resultBox = document.querySelector("#value");
+        var oldValue = eval(resultBox.value);
+        resultBox.value = oldValue;
+      }
+
+      function clearData() {
+        document.querySelector("#value").value = "";
+      }
+    </script>
+  </body>
+</html>
